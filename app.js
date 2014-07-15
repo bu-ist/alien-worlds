@@ -66,7 +66,7 @@
 		srslider = document.getElementById("srad");
 		pmslider = document.getElementById("pmass");
 		prslider = document.getElementById("prad");
-		reset = document.getElementById("reset");
+		reset_button = document.getElementById("reset");
 		canvas = document.getElementById("canvas_container");
 		
 		// Create scene
@@ -365,7 +365,7 @@
 		}
 		
 		// handle reset button click
-		reset.onclick = function(){
+		reset_button.onclick = function(){
 		
 			//console.log("reset");
 			document.getElementById("distance").value= 0;
