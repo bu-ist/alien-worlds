@@ -1,3 +1,4 @@
+//app.js
 // global values
 	var zOrder = 1;    				 		// z-order of the Sun and the planet
 	var center = {x: 200, y: 200 };  		// centre of mass
