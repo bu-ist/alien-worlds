@@ -59,8 +59,8 @@ article:after
 {
 	width: 280px;
 	position: fixed;
-	right: 0px;
-	/*right: -240px;*/
+	/*right: 0px;*/
+	right: -240px;
 	top: 0;
 	bottom: 0;
 	background-color: #654;
@@ -385,4 +385,29 @@ text-align: center;
 }
 .hidden {
 	display: none;
+}
+
+@media screen and (min-width: 890px) {
+	.sidebar
+	{
+		right: 0px;	
+	}
+	.sidebar:hover ~ article
+	{
+		-webkit-transform: none;
+		-moz-transform:    none;
+		-ms-transform: 	   none;
+		-o-transform: 	   none;
+		transform: 		   none;
+	}
+	.sidebar:hover ~ article:after
+	{
+		display: none;
+	}
+	#canvas_container {
+		right: 280px;
+	}
+	.module_header {
+		padding-right: 290px;
+	}
 }
