@@ -251,6 +251,7 @@
 			
 			// update slider value
 			vslider.value = vangle;
+			$(vslider).change();
 			
 			// add degree symbol at the end
 			document.getElementById("inputangle").value= String(vangle ) + '\u00B0';
@@ -334,6 +335,7 @@
 
 			// update slider
 			dslider.value = tdist;
+			$(dslider).change();
 			
 			// update textbox with the valid value
 			document.getElementById("inputdist").value= String(relDist.toPrecision(3));
@@ -413,7 +415,10 @@
 
 			// update slider
 			smslider.value = Math.round(newv);
+			$(smslider).change();
+
 			srslider.value = Math.round(newv);
+			$(srslider).change();
 			
 			// update textbox with the valid value
 			// update text box
@@ -493,8 +498,11 @@
 
 			// update slider
 			smslider.value = newv;
+			$(smslider).change();
+
 			srslider.value = newv;
-			
+			$(srslider).change();
+
 			// update textbox with the valid value
 			// update text box
 			document.getElementById("txtsmass").innerHTML= String( relMassSun.toFixed(2) ) ;
@@ -564,7 +572,8 @@
 			
 			// update slider
 			smslider.value = newv;
-			
+			$(smslider).change();
+
 			// update textbox with the valid value
 			document.getElementById("txtpmass").innerHTML = String( relMassEarth.toFixed(2) ) ;
 			document.getElementById("inputpmass").value =  String( relMassEarth.toFixed(2) ) ;
@@ -630,6 +639,7 @@
 
 			// update slider
 			prslider.value = Math.round(newv);
+			$(prslider).change();
 			
 			// update textbox with the valid value
 			// update text box
