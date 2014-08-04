@@ -231,8 +231,7 @@
 			vangle = parseFloat(vslider.value);
 			
 			// update text box
-			document.getElementById("inputangle").value= String(vangle ) + '\u00B0';
-			$('#inputangle').val( vangle );
+			$('#inputangle').val( vangle + '\u00B0' );
 			
 			// update animation
 			updateALL();
