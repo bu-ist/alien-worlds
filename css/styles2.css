@@ -1,0 +1,22 @@
+.module_wrapper {
+	-webkit-box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.3);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.3);
+	width: 100%;
+	bottom: 250px;
+	top: 0px;
+	position: absolute;
+	right: 40px;
+	left: 0;
+}
+.module_wrapper.module_bottom {
+	bottom: 0;
+	height: 250px;
+	position: absolute;
+	margin-top: auto;
+}
+#canvas_container svg {
+transform:scale(1,1);
+-ms-transform:scale(1,1); /* IE 9 */
+-webkit-transform:scale(1,1);
+}

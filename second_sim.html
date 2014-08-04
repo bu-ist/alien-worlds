@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Gravity and Planetary Motion</title>
+	<link rel="stylesheet" media="all" href="css/rangeslider.css" />
+	<link rel="stylesheet" media="all" href="css/styles.css" />
+	<link rel="stylesheet" media="all" href="css/styles2.css" />
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/raphael-min.js"></script>
+
+	<script src="js/app.js"></script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+
+	<!-- menu -->
+
+	<div class="sidebar">
+	
+		<div class="sidebar_handle">
+			<div class="hamburger">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</div>
+		</div>
+		<img src="img/title.svg" class="sidebar_title">
+		<div id="controls" class="sidebar_content">
+			<div class="input_wrapper">
+				<label for="viewAngle">Viewing Angle</label>
+				<div class="input_content" id="asd">
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="viewAngle" min="0" max="90" value="90" step="1" name="viewangle">
+					<span class="input_printout"><input for="viewangle" id="inputangle"></input></span>
+					<span class="input_printout hidden"><output for="viewangle" id="txtangle">90</output>&#176</span>
+				</div>
+			</div>
+			<div class="input_wrapper">
+				<label for="distance">Distance</label>
+				<div class="input_content">
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="distance" min="-9" max="9"  value="0" step="1" name="distance"/>
+					<span class="input_printout"><input for="distance"></input></span>
+					<span class="input_printout hidden"><output for="distance">1</output></span>
+					<div class="input_txt"><span class="log_number"><span id="txtdist">1</span>x</span> relative to<br> Earth-Sun Distance (AU)</div>
+				</div>
+			</div>
+			<div class="input_wrapper">
+				<label for="smass">Star Mass</label>
+				<div class="input_content">
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="smass" min="-9" max="9"  value="0" step=".2" name="starmass"/>
+					<span class="input_printout"><input for="starmass"></input></span>
+					<span class="input_printout hidden"><output for="starmass">1</output></span>
+					<div class="input_txt"><span class="log_number"><span id="txtsmass">1</span>x</span> mass of the Sun</div>
+				</div>
+			</div>
+			<div class="input_wrapper">
+				<label for="srad">Star Radius</label>
+				<div class="input_content">
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="srad" min="-9" max="9"  value="0" step=".2" name"starradius"/>
+					<span class="input_printout"><input for="starradius"></input></span>
+					<span class="input_printout hidden"><output for="starradius">1</output></span>
+					<div class="input_txt"><span class="log_number"><span id="txtsrad">1</span>x</span> radius of the Sun</div>
+				</div>
+			</div>
+			<div class="input_wrapper">
+				<label for="srad">Planet Mass</label>
+				<div class="input_content">
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="pmass" min="-9" max="9"  value="0" step=".5" name="planetmass"/>
+					<span class="input_printout"><input for="planetmass"></input></span>
+					<span class="input_printout hidden"><output for="planetmass">1</output></span>
+					<div class="input_txt"><span class="log_number"><span id="txtpmass">1</span>x</span> mass of the Earth</div>
+				</div>
+			</div>
+			<div class="input_wrapper">
+				<label for="prad">Planet Radius</label>
+				<div class="input_content">
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="prad" min="-9" max="9"  value="0" step=".2" name="planetradius"/>
+					<span class="input_printout"><input id="planetradius"></input></span>
+					<span class="input_printout hidden"><output id="planetradius">1</output></span>
+					<div class="input_txt"><span class="log_number"><span id="txtprad">1</span>x</span> radius of the Earth</div>
+				</div>
+			</div>
+			<button type="button" id="reset">Reset to the original values <img src="img/reset.svg"></button>
+		</div>
+	</div>
+
+	<!-- main article -->
+	<article>
+
+		<div class="module_wrapper">
+			<div class="module_header">Gravity & Planetary Motion</div>
+			<div class="module_container">
+				<div class="module_log">
+					<span class="log_header">PERIOD</span> <span id="period" class="log_number"> 365 </span> Earth days or <span id="years" class="log_number">1</span> Earth years<br>
+		<span class="log_header">FORCE</span> <span id="force" class="log_number"> 1 </span> x the force between the Earth and the Sun
+				</div>
+				<div id="canvas_container"></div>
+			</div>
+		</div>
+
+		<div class="module_wrapper module_bottom">
+			<div class="module_header">Graph</div>
+			<div class="module_container">
+				 
+			</div>
+		</div>
+
+	</article>
+
+    <script src="js/rangeslider.min.js"></script>
+    <script src="js/svgeezy.min.js"></script>
+    <script>
+		svgeezy.init(false, 'png');
+    </script>
+	<script>
+	    $(function() {
+
+	        var $document   = $(document),
+	            selector    = '[data-rangeslider]',
+	            $element    = $(selector);
+
+	        // Example functionality to demonstrate a value feedback
+	        function valueOutput(element) {
+	            var value = element.value,
+	                output = element.parentNode.getElementsByTagName('output')[0];
+	            output.innerHTML = value;
+	        }
+	        for (var i = $element.length - 1; i >= 0; i--) {
+	            valueOutput($element[i]);
+	        };
+	        $document.on('change', 'input[type="range"]', function(e) {
+	            valueOutput(e.target);
+	        });
+
+	        // Example functionality to demonstrate disabled functionality
+	        $document .on('click', '#js-example-disabled button[data-behaviour="toggle"]', function(e) {
+	            var $inputRange = $('input[type="range"]', e.target.parentNode);
+
+	            if ($inputRange[0].disabled) {
+	                $inputRange.prop("disabled", false);
+	            }
+	            else {
+	                $inputRange.prop("disabled", true);
+	            }
+	            $inputRange.rangeslider('update');
+	        });
+
+	        // Example functionality to demonstrate programmatic value changes
+	        $document.on('click', '#js-example-change-value button', function(e) {
+	            var $inputRange = $('input[type="range"]', e.target.parentNode),
+	                value = $('input[type="number"]', e.target.parentNode)[0].value;
+
+	            $inputRange.val(value).change();
+	        });
+
+	        // Example functionality to demonstrate destroy functionality
+	        $document
+	            .on('click', '#js-example-destroy button[data-behaviour="destroy"]', function(e) {
+	                $('input[type="range"]', e.target.parentNode).rangeslider('destroy');
+	            })
+	            .on('click', '#js-example-destroy button[data-behaviour="initialize"]', function(e) {
+	                $('input[type="range"]', e.target.parentNode).rangeslider({ polyfill: false });
+	            });
+
+	        // Basic rangeslider initialization
+	        $element.rangeslider({
+
+	            // Deactivate the feature detection
+	            polyfill: false,
+
+	            // Callback function
+	            onInit: function() {},
+
+	            // Callback function
+	            onSlide: function(position, value) {},
+
+	            // Callback function
+	            onSlideEnd: function(position) {}
+	        });
+
+	    });
+	</script>
+
+</body>
+</html>
