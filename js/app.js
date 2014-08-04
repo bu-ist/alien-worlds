@@ -232,7 +232,7 @@
 			
 			// update text box
 			document.getElementById("inputangle").value= String(vangle ) + '\u00B0';
-			$('input[id="inputangle"]').val(vangle).change();
+			$('#inputangle').val( vangle );
 			
 			// update animation
 			updateALL();
