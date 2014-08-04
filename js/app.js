@@ -220,7 +220,7 @@
 		// restart animation if the window previously lost focus
 		$(window).focus(function(){
 			// update animation
-			updateALL()
+			updateALL();
 		});
 		
 		//---------- Handle Sliders and text boxes----------//
@@ -235,7 +235,7 @@
 			$('input[id="inputangle"]').val(vangle).change();
 			
 			// update animation
-			updateALL()
+			updateALL();
 		});
 
 
@@ -257,7 +257,7 @@
 			document.getElementById("inputangle").value= String(vangle ) + '\u00B0';
 			
 			// update animation
-			updateALL()
+			updateALL();
 
 		});
 
@@ -297,7 +297,7 @@
 			//console.log("Earth distance: " + eDist + " Sun distance: " + sDist);
 			
 			// update animation
-			updateALL()
+			updateALL();
 	
 		});
 
@@ -385,7 +385,7 @@
 			eDist = Dist - sDist;
 			
 			// update animation
-			updateALL()
+			updateALL();
 		});
 
 		// handle textbox change of star mass
@@ -469,7 +469,7 @@
 			document.getElementById("inputsrad").value=  String( relRadSun.toFixed(2) ) ;
 			
 			// update animation
-			updateALL()
+			updateALL();
 		});
 		
 		// handle textbox change of star radius
@@ -545,7 +545,7 @@
 			eDist = Dist - sDist;
 			
 			// update animation
-			updateALL()
+			updateALL();
 		});
 		
 
@@ -613,7 +613,7 @@
 			document.getElementById("inputprad").value=  String( relRadEarth.toFixed(2) ) ;
 			
 			// update animation
-			updateALL()
+			updateALL();
 		});
 		
 		$("#inputprad").change(function(){
@@ -682,7 +682,7 @@
 			relRadEarth = 1;
 			
 			// update animation
-			updateALL()
+			updateALL();
 		}
 		
 		
