@@ -121,11 +121,11 @@ article, article:after, .sidebar, .sidebar *
 
 .sidebar:hover ~ article
 {
-	-webkit-transform: perspective(1000px) rotateY(30deg);
-	-moz-transform:    perspective(1000px) rotateY(30deg);
-	-ms-transform: 	   perspective(1000px) rotateY(30deg);
-	-o-transform: 	   perspective(1000px) rotateY(30deg);
-	transform: 		   perspective(1000px) rotateY(30deg);
+	-webkit-transform: perspective(1000px) rotateY(20deg);
+	-moz-transform:    perspective(1000px) rotateY(20deg);
+	-ms-transform: 	   perspective(1000px) rotateY(20deg);
+	-o-transform: 	   perspective(1000px) rotateY(20deg);
+	transform: 		   perspective(1000px) rotateY(20deg);
 }
 
 .sidebar:hover ~ article:after
@@ -386,7 +386,7 @@ text-align: center;
 	display: none;
 }
 
-@media screen and (min-width: 862px) {
+@media screen and (min-width: 762px) {
 	.sidebar
 	{
 		right: 0px;	
@@ -409,4 +409,12 @@ text-align: center;
 	.module_header {
 		padding-right: 290px;
 	}
+}
+
+@media screen and (max-width: 440px) {
+	#canvas_container svg {
+		transform: scale(1,1);
+		-ms-transform: scale(1,1);
+		-webkit-transform: scale(1,1);
+}
 }
