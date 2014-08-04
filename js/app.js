@@ -244,16 +244,17 @@
 			vangle = parseInt($(this).val());
 			
 			// insure the valid value
-			if( isNaN(vangle) ) vangle= 90;
-			if(vangle < 0) vangle = 0;
-			if(vangle > 90) vangle = 90;
-			
+			if( isNaN(vangle) || vangle > 90) {
+				vangle= 90;
+			} else if(vangle < 0) {
+				vangle = 0;
+			}
+
 			// update slider value
-			vslider.value = vangle;
-			$(vslider).change();
+			$("#viewAngle").val( vangle ).change();
 			
 			// add degree symbol at the end
-			document.getElementById("inputangle").value= String(vangle ) + '\u00B0';
+			$(this).val( vangle + '\u00B0');
 			
 			// update animation
 			updateALL();
