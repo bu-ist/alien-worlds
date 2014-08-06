@@ -15,7 +15,9 @@
 	
 	var speed = 3600;
 	
-	
+	var smass_srad_timer_is_set = false;
+	var smass_srad_update_timer;
+
 	// Create orbit path for the planet
 	function EarthOrbit(Dist, angle) {
 		var eorbit="M" + (center.x + Dist) + ",200 R";
@@ -346,7 +348,19 @@
 
 		});
 		
-		
+		$("#smass,#srad").change(function(){
+			if( smass_srad_timer_is_set ){
+				return false;
+			}
+			smass_srad_timer_is_set = true;
+			clearTimeout( smass_srad_update_timer );
+			smass_srad_update_timer = setTimeout( function(){
+				$(smslider).trigger('change');
+				$(srslider).trigger('change');
+				smass_srad_timer_is_set = false;
+			}, 100);
+		});
+
 		// handle slider change of the star mass
 		$("#smass").change(function(){
 		
