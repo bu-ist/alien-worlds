@@ -59,8 +59,8 @@ article:after
 {
 	width: 280px;
 	position: fixed;
-	right: 0px;
-	/*right: -240px;*/
+	/*right: 0px;*/
+	right: -240px;
 	top: 0;
 	bottom: 0;
 	background-color: #654;
@@ -121,11 +121,11 @@ article, article:after, .sidebar, .sidebar *
 
 .sidebar:hover ~ article
 {
-	-webkit-transform: perspective(1000px) rotateY(30deg);
-	-moz-transform:    perspective(1000px) rotateY(30deg);
-	-ms-transform: 	   perspective(1000px) rotateY(30deg);
-	-o-transform: 	   perspective(1000px) rotateY(30deg);
-	transform: 		   perspective(1000px) rotateY(30deg);
+	-webkit-transform: perspective(1000px) rotateY(20deg);
+	-moz-transform:    perspective(1000px) rotateY(20deg);
+	-ms-transform: 	   perspective(1000px) rotateY(20deg);
+	-o-transform: 	   perspective(1000px) rotateY(20deg);
+	transform: 		   perspective(1000px) rotateY(20deg);
 }
 
 .sidebar:hover ~ article:after
@@ -267,21 +267,20 @@ bottom: 0px;
 .module_log {
 	position: absolute;
 	bottom: 0;
-	margin-bottom: 20px;
-	font-size: 12px;
+	margin-bottom: 15px;
+	font-size: 14px;
 	color: #09c;
-	line-height: 1.5em;
+	line-height: 1.2em;
 }
 .log_header {
 	font-weight: bold;
-	color: #045;
+	color: #2cd;
 	width: 4em;
 	display: inline-block;
 }
 
 .log_number {
 	color: #fff;
-	font-weight: bold;
 }
 
 
@@ -385,4 +384,37 @@ text-align: center;
 }
 .hidden {
 	display: none;
+}
+
+@media screen and (min-width: 762px) {
+	.sidebar
+	{
+		right: 0px;	
+	}
+	.sidebar:hover ~ article
+	{
+		-webkit-transform: none;
+		-moz-transform:    none;
+		-ms-transform: 	   none;
+		-o-transform: 	   none;
+		transform: 		   none;
+	}
+	.sidebar:hover ~ article:after
+	{
+		display: none;
+	}
+	#canvas_container {
+		right: 280px;
+	}
+	.module_header {
+		padding-right: 290px;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	#canvas_container svg {
+		transform: scale(1,1);
+		-ms-transform: scale(1,1);
+		-webkit-transform: scale(1,1);
+}
 }
