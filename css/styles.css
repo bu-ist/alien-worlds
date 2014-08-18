@@ -366,6 +366,7 @@ z-index: -1;
 transform:scale(1.4,1.4);
 -ms-transform:scale(1.4,1.4); /* IE 9 */
 -webkit-transform:scale(1.4,1.4);
+overflow: visible !important;
 }
 
 
@@ -403,7 +404,7 @@ text-align: center;
 	{
 		display: none;
 	}
-	#canvas_container {
+	#> {
 		right: 280px;
 	}
 	.module_header {
