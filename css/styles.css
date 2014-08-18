@@ -405,7 +405,7 @@ text-align: center;
 	{
 		display: none;
 	}
-	#> {
+	#canvas_container {
 		right: 280px;
 	}
 	.module_header {
