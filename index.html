@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,7 @@
 				<label for="viewAngle">Viewing Angle</label>
 				<div class="input_content" id="asd">
 					<input type="range" data-rangeslider data-show-value="true" class="islider" id="viewAngle" min="0" max="90" value="90" step="1" name="viewangle">
-					<span class="input_printout"><input for="viewangle" id="inputangle"></input></span>
+					<span class="input_printout"><input for="viewangle" id="inputangle" value="90 &#176"></input></span>
 					<span class="input_printout hidden"><output for="viewangle" id="txtangle">90</output>&#176</span>
 				</div>
 			</div>
@@ -45,34 +46,34 @@
 				<label for="distance">Distance</label>
 				<div class="input_content">
 					<input type="range" data-rangeslider data-show-value="true" class="islider" id="distance" min="-9" max="9"  value="0" step="0.0001" name="distance"/>
-					<span class="input_printout"><input for="distance"></input></span>
+					<span class="input_printout"><input for="distance" id="inputdist" value="1"></input></span>
 					<span class="input_printout hidden"><output for="distance">1</output></span>
-					<div class="input_txt"><span class="log_number"><span id="txtdist">1</span>x</span> relative to<br> Earth-Sun Distance (AU)</div>
+					<div class="input_txt"><span class="log_number"><span id="txtdist">1</span>&times;</span> Earth-Sun Distance (AU)</div>
 				</div>
 			</div>
 			<div class="input_wrapper">
 				<label for="smass">Star Mass</label>
 				<div class="input_content">
 					<input type="range" data-rangeslider data-show-value="true" class="islider" id="smass" min="-9" max="9"  value="0" step="0.0001" name="starmass"/>
-					<span class="input_printout"><input for="starmass"></input></span>
+					<span class="input_printout"><input for="starmass" id="inputsmass" value="1"></input></span>
 					<span class="input_printout hidden"><output for="starmass">1</output></span>
-					<div class="input_txt"><span class="log_number"><span id="txtsmass">1</span>x</span> mass of the Sun</div>
+					<div class="input_txt"><span class="log_number"><span id="txtsmass">1</span>&times;</span> mass of the Sun</div>
 				</div>
 			</div>
 			<div class="input_wrapper">
 				<label for="srad">Star Radius</label>
 				<div class="input_content">
 					<input type="range" data-rangeslider data-show-value="true" class="islider" id="srad" min="-9" max="9"  value="0" step="0.0001" name"starradius"/>
-					<span class="input_printout"><input for="starradius"></input></span>
+					<span class="input_printout"><input for="starradius" id="inputsrad" value="1"></input></span>
 					<span class="input_printout hidden"><output for="starradius">1</output></span>
-					<div class="input_txt"><span class="log_number"><span id="txtsrad">1</span>x</span> radius of the Sun</div>
+					<div class="input_txt"><span class="log_number"><span id="txtsrad">1</span>&times;</span> radius of the Sun</div>
 				</div>
 			</div>
 			<div class="input_wrapper">
 				<label for="srad">Planet Mass</label>
 				<div class="input_content">
-					<input type="range" data-rangeslider data-show-value="true" class="islider" id="pmass" min="-9" max="9"  value="0" step="0.0001" name="planetmass"/>
-					<span class="input_printout"><input for="planetmass"></input></span>
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="pmass" min="-9" max="9"  value="0" step=".0001" name="planetmass"/>
+					<span class="input_printout"><input for="planetmass" id="inputpmass" value="1"></input></span>
 					<span class="input_printout hidden"><output for="planetmass">1</output></span>
 					<div class="input_txt"><span class="log_number"><span id="txtpmass">1</span>x</span> mass of the Earth</div>
 				</div>
@@ -81,9 +82,9 @@
 				<label for="prad">Planet Radius</label>
 				<div class="input_content">
 					<input type="range" data-rangeslider data-show-value="true" class="islider" id="prad" min="-9" max="9"  value="0" step="0.0001" name="planetradius"/>
-					<span class="input_printout"><input id="planetradius"></input></span>
+					<span class="input_printout"><input for="planetradius" id="inputprad" value="1"></input></span>
 					<span class="input_printout hidden"><output id="planetradius">1</output></span>
-					<div class="input_txt"><span class="log_number"><span id="txtprad">1</span>x</span> radius of the Earth</div>
+					<div class="input_txt"><span class="log_number"><span id="txtprad">1</span>&times;</span> radius of the Earth</div>
 				</div>
 			</div>
 			<button type="button" id="reset">Reset to the original values <img src="img/reset.svg"></button>
@@ -94,11 +95,11 @@
 	<article>
 
 		<div class="module_wrapper">
-			<div class="module_header">Gravity & Planetary Motion</div>
+			<div class="module_header">Visualization</div>
 			<div class="module_container">
 				<div class="module_log">
 					<span class="log_header">PERIOD</span> <span id="period" class="log_number"> 365 </span> Earth days or <span id="years" class="log_number">1</span> Earth years<br>
-		<span class="log_header">FORCE</span> <span id="force" class="log_number"> 1 </span> x the force between the Earth and the Sun
+		<span class="log_header">FORCE</span> <span id="force" class="log_number"> 1 </span> &times; the force between the Earth and the Sun
 				</div>
 				<div id="canvas_container"></div>
 			</div>
