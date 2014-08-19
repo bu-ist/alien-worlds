@@ -44,7 +44,7 @@
 	// Create orbit path for the sun
 	function SunOrbit(Dist, angle) {
 		var sorbit="M" + (center.x + Dist) + "," + (center.y ) + " R";
-		for( var i=0; i < 36; i++ ){
+		for( var i=1; i < 36; i++ ){
 			sorbit += center.x + Dist * Math.cos(  i * Math.PI/18 );
 			sorbit +=",";
 			sorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin(  i * Math.PI/18 );
