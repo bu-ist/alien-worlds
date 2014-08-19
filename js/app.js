@@ -30,11 +30,11 @@
 	
 	// Create orbit path for the planet
 	function EarthOrbit(Dist, angle) {
-		var eorbit="M" + (center.x + Dist) + ",200 R";
-		for( var i=0; i < 72; i++ ){
-			eorbit += center.x + Dist * Math.cos( i * Math.PI/36 );
+		var eorbit="M" + (center.x - Dist) + "," + (center.y ) + " R";
+		for( var i=1; i < 72; i++ ){
+			eorbit += center.x + Dist * Math.cos( Math.PI + i * Math.PI/36. );
 			eorbit +=",";
-			eorbit += center.y +  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin( i * Math.PI/36 );
+			eorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin( Math.PI + i * Math.PI/36. );
 			eorbit +=" ";
 		}
 		eorbit  +="z";
@@ -43,11 +43,11 @@
 
 	// Create orbit path for the sun
 	function SunOrbit(Dist, angle) {
-		var sorbit="M" + (center.x - Dist) + ",200 R";
+		var sorbit="M" + (center.x + Dist) + "," + (center.y ) + " R";
 		for( var i=0; i < 36; i++ ){
-			sorbit += center.x - Dist * Math.cos( i * Math.PI/18 );
+			sorbit += center.x + Dist * Math.cos(  i * Math.PI/18 );
 			sorbit +=",";
-			sorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin( i * Math.PI/18 );
+			sorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin(  i * Math.PI/18 );
 			sorbit +=" ";
 		}
 		sorbit  +="z";
@@ -55,13 +55,13 @@
 	}
 
 
-
+	// Create visual path for the earth orbit (consists of 2 parts)
 	function EarthHalf( half, Dist, angle) {
-		var eorbit="M" + (center.x + Dist * half) + ",200 R";
+		var eorbit="M" + (center.x - Dist*half) + "," + (center.y ) + " R";
 		for( var i=0; i <= 36; i++ ){
-			eorbit += center.x + Dist * Math.cos( i * Math.PI/36 ) * half;
+			eorbit += center.x + Dist * Math.cos(Math.PI + i * Math.PI/36 ) * half;
 			eorbit +=",";
-			eorbit += center.y +  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin( i * Math.PI/36 ) * half;
+			eorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin( Math.PI + i * Math.PI/36 ) * half;
 			eorbit +=" ";
 		}
 		return(eorbit);
@@ -209,9 +209,9 @@
 		paper.id = 'IDcanvas';
 
 		// create a planet and the sun
-		var sun = paper.circle(200+sDist, 200, radius.sun).attr( { fill: "r(.35,.35) #FFFFAA-#DEAD49", stroke: '#DEAD49', 'stroke-width': 2, opacity: 1 });
+		var sun = paper.circle(200, 200 + sDist, radius.sun).attr( { fill: "r(.35,.35) #FFFFAA-#DEAD49", stroke: '#DEAD49', 'stroke-width': 2, opacity: 1 });
 		sun.id = 'IDsun';
-		var planet = paper.circle(200+eDist, 200, radius.earth).attr({ fill: "r(0.45,0.45) #618bA9-#215b69", "stroke": "#215b69", "stroke-width": "0.5", "stroke-linejoin": "round"});
+		var planet = paper.circle(200, 200 - eDist, radius.earth).attr({ fill: "r(0.45,0.45) #618bA9-#215b69", "stroke": "#215b69", "stroke-width": "0.5", "stroke-linejoin": "round"});
 		planet.id = 'IDplanet';
 
 		// create orbit object for the Earth
