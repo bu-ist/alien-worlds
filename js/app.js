@@ -559,14 +559,14 @@
 			var newv= parseFloat(pmslider.value);
 			var news= parseFloat(smslider.value);
 			
-			console.log("slider planet mass:" + newv);
+			// console.log("slider planet mass:" + newv);
 			if (newv < 0){
 				relMassEarth = 1.0 + newv*0.5 / 9.0;
 			} else {
 				relMassEarth = 2999.0 * newv / 9.0 + 1.0 ;
 			}	
 
-			console.log("slider relMassEarth:" + relMassEarth);
+			// console.log("slider relMassEarth:" + relMassEarth);
 			// update textbox with the valid values
 			if(relMassEarth < 10){
 				document.getElementById("inputpmass").value= String(relMassEarth.toPrecision(2));
@@ -604,7 +604,7 @@
 
 			// get the value of the viewing angle
 			relMassEarth = parseFloat($(this).val());
-			console.log("text input relMassEarth:" + relMassEarth);
+			// console.log("text input relMassEarth:" + relMassEarth);
 
 			// insure the valid value
 			if ( isNaN(relMassEarth) ) relMassEarth= 1;
@@ -618,12 +618,12 @@
 				newv = (relMassEarth  - 1.0) * 9.0 / 2999.0;
 			}	
 
-			console.log("text slider value:" + newv);
+			// console.log("text slider value:" + newv);
 			// update slider
 			pmslider.value = newv;
 			$(pmslider).change();
 
-			console.log("text relMassEarth:" + relMassEarth);
+			// console.log("text relMassEarth:" + relMassEarth);
 			
 			// update textbox with the valid values
 			if(relMassEarth < 10){
