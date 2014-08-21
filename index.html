@@ -41,20 +41,27 @@
 			</div>
 		</div>
 		<img src="img/title.svg" class="sidebar_title">
+		<h1 class="a11y-only">Alien Worlds: Gravity and Planetary Motion</h1>
 		<div id="controls" class="sidebar_content">
 			<div class="input_wrapper">
 				<label for="inputangle">Viewing Angle</label>
 				<div class="input_content" id="asd">
-					<input type="range" data-rangeslider data-show-value="true" class="islider" id="viewAngle" min="0" max="90" value="90" step="1" name="viewangle">
-					<span class="input_printout"><input for="viewangle" id="inputangle" value="90 &#176;"></input></span>
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="viewAngle" min="0" max="90" value="90" step="1" name="viewangle" aria-hidden="true" tabindex="-1" />
+					<span class="input_printout"><input id="inputangle" aria-describedby="inputangle_aria_label" value="90 &#176;" /></span>
+					<span class="slider-helper min-label" aria-hidden="true">0</span>
+					<span class="slider-helper max-label" aria-hidden="true">90</span>
+					<span style="display:none;" id="inputangle_aria_label">Enter any number between 0 and 90</span>
 					<span class="input_printout hidden"><output for="viewangle" id="txtangle">90</output>&#176;</span>
 				</div>
 			</div>
 			<div class="input_wrapper">
 				<label for="inputdist">Distance</label>
 				<div class="input_content">
-					<input type="range" data-rangeslider data-show-value="true" class="islider" id="distance" min="-9" max="9"  value="0" step="0.0001" name="distance"/>
-					<span class="input_printout"><input for="distance" id="inputdist" value="1"></input></span>
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="distance" min="-9" max="9" value="0" step="0.0001" name="distance" aria-hidden="true" tabindex="-1" />
+					<span class="input_printout"><input type="text" id="inputdist" value="1" aria-describedby="inputdist_aria_label" /></span>
+					<span class="slider-helper min-label" aria-hidden="true">0.10</span>
+					<span class="slider-helper max-label" aria-hidden="true">100</span>
+					<span style="display:none;" id="inputdist_aria_label">Enter any value between 0.10 and 100</span>
 					<span class="input_printout hidden"><output for="distance">1</output></span>
 					<div class="input_txt"><span class="log_number"><span id="txtdist">1</span>&times;</span> Earth-Sun Distance (AU)</div>
 				</div>
@@ -62,8 +69,11 @@
 			<div class="input_wrapper">
 				<label for="inputsmass">Star Mass</label>
 				<div class="input_content">
-					<input type="range" data-rangeslider data-show-value="true" class="islider" id="smass" min="-9" max="9"  value="0" step="0.0001" name="starmass"/>
-					<span class="input_printout"><input for="starmass" id="inputsmass" value="1"></input></span>
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="smass" min="-9" max="9"  value="0" step="0.0001" name="starmass" aria-hidden="true" tabindex="-1" />
+					<span class="input_printout"><input id="inputsmass" value="1" aria-describedby="inputsmass_aria_label" /></span>
+					<span class="slider-helper min-label" aria-hidden="true">0.16</span>
+					<span class="slider-helper max-label" aria-hidden="true">6.3</span>
+					<span style="display:none;" id="inputsmass_aria_label">Enter any number between 0.16 and 6.3</span>
 					<span class="input_printout hidden"><output for="starmass">1</output></span>
 					<div class="input_txt"><span class="log_number"><span id="txtsmass">1</span>&times;</span> mass of the Sun</div>
 				</div>
@@ -71,8 +81,11 @@
 			<div class="input_wrapper">
 				<label for="inputsrad">Star Radius</label>
 				<div class="input_content">
-					<input type="range" data-rangeslider data-show-value="true" class="islider" id="srad" min="-9" max="9"  value="0" step="0.0001" name"starradius"/>
-					<span class="input_printout"><input for="starradius" id="inputsrad" value="1"></input></span>
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="srad" min="-9" max="9"  value="0" step="0.0001" name"starradius" aria-hidden="true" tabindex="-1" />
+					<span class="input_printout"><input id="inputsrad" value="1" aria-describedby="inputsrad_aria_label" /></span>
+					<span class="slider-helper min-label" aria-hidden="true">0.10</span>
+					<span class="slider-helper max-label" aria-hidden="true">10</span>
+					<span style="display:none;" id="inputsmass_aria_label">Enter any number between 0.10 and 10</span>
 					<span class="input_printout hidden"><output for="starradius">1</output></span>
 					<div class="input_txt"><span class="log_number"><span id="txtsrad">1</span>&times;</span> radius of the Sun</div>
 				</div>
@@ -80,8 +93,11 @@
 			<div class="input_wrapper">
 				<label for="inputpmass">Planet Mass</label>
 				<div class="input_content">
-					<input type="range" data-rangeslider data-show-value="true" class="islider" id="pmass" min="-9" max="9"  value="0" step=".0001" name="planetmass"/>
-					<span class="input_printout"><input for="planetmass" id="inputpmass" value="1"></input></span>
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="pmass" min="-9" max="9"  value="0" step=".0001" name="planetmass" aria-hidden="true" tabindex="-1" />
+					<span class="input_printout"><input id="inputpmass" value="1" aria-describedby="inpurpmass_aria_label" /></span>
+					<span class="slider-helper min-label" aria-hidden="true">0.5</span>
+					<span class="slider-helper max-label" aria-hidden="true">3000</span>
+					<span style="display:none;" id="inputpmass_aria_label">Enter any number between 0.5 and 3000</span>
 					<span class="input_printout hidden"><output for="planetmass">1</output></span>
 					<div class="input_txt"><span class="log_number"><span id="txtpmass">1</span>x</span> mass of the Earth</div>
 				</div>
@@ -89,8 +105,11 @@
 			<div class="input_wrapper">
 				<label for="inputprad">Planet Radius</label>
 				<div class="input_content">
-					<input type="range" data-rangeslider data-show-value="true" class="islider" id="prad" min="-9" max="9"  value="0" step="0.0001" name="planetradius"/>
-					<span class="input_printout"><input for="planetradius" id="inputprad" value="1"></input></span>
+					<input type="range" data-rangeslider data-show-value="true" class="islider" id="prad" min="-9" max="9"  value="0" step="0.0001" name="planetradius" aria-hidden="true" tabindex="-1" />
+					<span class="input_printout"><input id="inputprad" value="1" /></span>
+					<span class="slider-helper min-label" aria-hidden="true">0.5</span>
+					<span class="slider-helper max-label" aria-hidden="true">50</span>
+					<span style="display:none;" id="inputprad_aria_label">Enter any number between 0.5 and 50</span>
 					<span class="input_printout hidden"><output id="planetradius">1</output></span>
 					<div class="input_txt"><span class="log_number"><span id="txtprad">1</span>&times;</span> radius of the Earth</div>
 				</div>
@@ -106,9 +125,9 @@
 		<div class="module_wrapper">
 			<div class="module_header">Gravity and Planetary Motion</div>
 			<div class="module_container">
-				<div class="module_log">
-					<span class="log_header">PERIOD</span> <span id="period" class="log_number"> 365 </span> Earth days or <span id="years" class="log_number">1</span> Earth years<br>
-		<span class="log_header">FORCE</span> <span id="force" class="log_number"> 1 </span> &times; the force between the Earth and the Sun
+				<div class="module_log" aria-atomic="true" aria-live="assertive">
+					<span class="log_header">Period</span> <span id="period" class="log_number"> 365 </span> Earth days or <span id="years" class="log_number">1</span> Earth years<span class="a11y-only">.</span><br />
+		<span class="log_header">Force</span> <span id="force" class="log_number"> 1 </span> &times; the force between the Earth and the Sun
 				</div>
 				<div id="canvas_container"></div>
 			</div>

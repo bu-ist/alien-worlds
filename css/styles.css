@@ -54,6 +54,15 @@ article:after
 	pointer-events: none;
 }
 
+/* Accessibility */
+.a11y-only{
+  position: absolute !important;
+  height: 1px; width: 1px; 
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 /* .sidebarigation */
 .sidebar
 {
@@ -194,6 +203,7 @@ color: #357;
 	background-color: rgba(0, 0, 0, .1);
 	padding: 10px 10px 5px 10px;
 	overflow: overlay;
+	position: relative;
 }
 .input_printout {
 	font-size: 11px;
@@ -211,6 +221,20 @@ color: #357;
 	position: absolute;
 }
 
+.slider-helper{
+	position: absolute;
+	top:25px;
+	font-size:9px;
+	color:#0cf;
+}
+
+.slider-helper.min-label{
+	left:11px;
+}
+
+.slider-helper.max-label{
+	right:75px;
+}
 
 .rangeslider {
 	width: 135px;
@@ -277,6 +301,7 @@ bottom: 0px;
 	color: #2cd;
 	width: 4em;
 	display: inline-block;
+	text-transform: uppercase;
 }
 
 .log_number {
