@@ -370,6 +370,10 @@ overflow: visible !important;
 z-index: -10;
 }
 
+.logo_bu {
+	margin: 30px 54px;
+}
+
 
 *:focus {
     outline: 0;
