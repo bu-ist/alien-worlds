@@ -27,7 +27,7 @@ article
 	-o-transform-origin: 0 50%;
 	transform-origin: 0 50%;
 
-	background: url('bg_body.jpg') no-repeat;
+	background: url('img/bg_body.jpg') no-repeat;
 	background-size: 100%;
 	-webkit-background-size: cover;
 	   -moz-background-size: cover;
@@ -75,7 +75,7 @@ article:after
 	bottom: 0;
 	background-color: #654;
 	z-index: 1;
-	background: url('bg_sidebar.jpg') no-repeat;
+	background: url('img/bg_sidebar.jpg') no-repeat;
 	background-size: 100%;
 	-webkit-background-size: cover;
 	   -moz-background-size: cover;
