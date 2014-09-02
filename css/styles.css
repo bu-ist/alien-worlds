@@ -27,14 +27,15 @@ article
 	-o-transform-origin: 0 50%;
 	transform-origin: 0 50%;
 
-	background: url(../img/bg_body.jpg);
+	background: url('../img/bg_body.jpg') no-repeat;
+	background-size: 100%;
 	-webkit-background-size: cover;
 	   -moz-background-size: cover;
 		 -o-background-size: cover;
 			background-size: cover;
 			/* The url is relative to the document, not to the css file! */
     /* Prefer absolute urls to avoid confusion. */
-    -ms-behavior: url(js/backgroundsize.min.htc);
+    /*-ms-behavior: url(js/backgroundsize.min.htc);*/
 }
 
 
@@ -74,14 +75,15 @@ article:after
 	bottom: 0;
 	background-color: #654;
 	z-index: 1;
-	background: url(../img/bg_sidebar.jpg);
+	background: url('../img/bg_sidebar.jpg') no-repeat;
+	background-size: 100%;
 	-webkit-background-size: cover;
 	   -moz-background-size: cover;
 		 -o-background-size: cover;
 			background-size: cover;
 			/* The url is relative to the document, not to the css file! */
     /* Prefer absolute urls to avoid confusion. */
-    -ms-behavior: url(js/backgroundsize.min.htc);
+    /*-ms-behavior: url(js/backgroundsize.min.htc);*/
 }
 
 .sidebar ul
