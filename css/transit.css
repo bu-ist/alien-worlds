@@ -1,12 +1,13 @@
 #canvas_container svg {
-transform: scale(1,1);
--ms-transform: scale(1,1);
--webkit-transform: scale(1,1);
+transform: scale(1.1,1.1);
+-ms-transform: scale(1.1,1.1);
+-webkit-transform: scale(1.1,1.1);
 overflow: visible;
 }
 
 #canvas_container {
 height: 600px;
+top: 150px
 }
 
 .module_log {

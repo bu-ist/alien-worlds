@@ -229,7 +229,7 @@ color: #357;
 	position: absolute;
 	top:25px;
 	font-size:9px;
-	color:#0cf;
+	color: rgba(255, 255, 255, 0.5);
 }
 
 .slider-helper.min-label{
