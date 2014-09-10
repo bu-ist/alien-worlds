@@ -27,14 +27,15 @@ article
 	-o-transform-origin: 0 50%;
 	transform-origin: 0 50%;
 
-	background: url(../img/bg_body.jpg);
+	background: url('../img/bg_body.jpg') no-repeat;
+	background-size: 100%;
 	-webkit-background-size: cover;
 	   -moz-background-size: cover;
 		 -o-background-size: cover;
 			background-size: cover;
 			/* The url is relative to the document, not to the css file! */
     /* Prefer absolute urls to avoid confusion. */
-    -ms-behavior: url(js/backgroundsize.min.htc);
+    /*-ms-behavior: url(js/backgroundsize.min.htc);*/
 }
 
 
@@ -54,6 +55,15 @@ article:after
 	pointer-events: none;
 }
 
+/* Accessibility */
+.a11y-only{
+  position: absolute !important;
+  height: 1px; width: 1px; 
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 /* .sidebarigation */
 .sidebar
 {
@@ -65,14 +75,15 @@ article:after
 	bottom: 0;
 	background-color: #654;
 	z-index: 1;
-	background: url(../img/bg_sidebar.jpg);
+	background: url('../img/bg_sidebar.jpg') no-repeat;
+	background-size: 100%;
 	-webkit-background-size: cover;
 	   -moz-background-size: cover;
 		 -o-background-size: cover;
 			background-size: cover;
 			/* The url is relative to the document, not to the css file! */
     /* Prefer absolute urls to avoid confusion. */
-    -ms-behavior: url(js/backgroundsize.min.htc);
+    /*-ms-behavior: url(js/backgroundsize.min.htc);*/
 }
 
 .sidebar ul
@@ -149,6 +160,8 @@ article, article:after, .sidebar, .sidebar *
 	position: absolute;
 	height: 100%;
 	width: 40px;
+	background-color: #4ab;
+	background-color: rgba(0, 0, 100, .05);
 }
 .sidebar_title
 {
@@ -194,6 +207,7 @@ color: #357;
 	background-color: rgba(0, 0, 0, .1);
 	padding: 10px 10px 5px 10px;
 	overflow: overlay;
+	position: relative;
 }
 .input_printout {
 	font-size: 11px;
@@ -211,6 +225,20 @@ color: #357;
 	position: absolute;
 }
 
+.slider-helper{
+	position: absolute;
+	top:25px;
+	font-size:9px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.slider-helper.min-label{
+	left:11px;
+}
+
+.slider-helper.max-label{
+	right:75px;
+}
 
 .rangeslider {
 	width: 135px;
@@ -277,6 +305,7 @@ bottom: 0px;
 	color: #2cd;
 	width: 4em;
 	display: inline-block;
+	text-transform: uppercase;
 }
 
 .log_number {
@@ -368,6 +397,10 @@ transform:scale(1.4,1.4);
 -webkit-transform:scale(1.4,1.4);
 overflow: visible !important;
 z-index: -10;
+}
+
+.logo_bu {
+	margin: 10px 54px;
 }
 
 
