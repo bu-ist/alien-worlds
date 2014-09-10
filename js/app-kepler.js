@@ -771,5 +771,6 @@
 			updateALL();
 		}
 
+		$(reset_button).click();
 
 	});
