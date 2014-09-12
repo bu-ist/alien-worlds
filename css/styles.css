@@ -453,3 +453,11 @@ text-align: center;
 		-webkit-transform: scale(1,1);
 }
 }
+
+.disclaimer {
+position: fixed;
+bottom: 5px;
+left: 5px;
+color: #058;
+font-size: 10px;
+}
