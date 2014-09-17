@@ -456,8 +456,8 @@ text-align: center;
 
 .disclaimer {
 position: fixed;
-bottom: 5px;
-left: 5px;
-color: #058;
-font-size: 10px;
+bottom: 2px;
+left: 2px;
+color: #047;
+font-size: 8px;
 }
