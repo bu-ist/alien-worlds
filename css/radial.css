@@ -1,13 +1,14 @@
 #canvas_container svg {
-transform: scale(1.1,1.1);
--ms-transform: scale(1.1,1.1);
--webkit-transform: scale(1.1,1.1);
+transform: scale(1,1);
+-ms-transform: scale(1,1);
+-webkit-transform: scale(1,1);
 overflow: visible;
 }
 
 #canvas_container {
 height: 600px;
-top: 150px
+top: 60px;
+width: 400px;
 }
 
 .module_log {
@@ -18,4 +19,18 @@ line-height: 1.3
 
 .log_header {
 width: 5em;
+}
+
+#radialnumber1, #radialnumber2 {
+	position: absolute;
+	font-size: 12px;
+	z-index: 100;
+}
+
+#radialnumber1 {
+	color: rgb(0, 85, 255);
+}
+
+#radialnumber2 {
+	color: rgb(255, 17, 17);
 }
