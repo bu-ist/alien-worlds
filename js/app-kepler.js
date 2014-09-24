@@ -1,3 +1,10 @@
+
+// *******************************************************
+//     Source code and visualization 
+// may be used for non-commercial and non-profit purpose 
+//     courtesy of "Boston University"
+// *******************************************************
+
 // global values
 	var zOrder = 1;    				 		// z-order of the Sun and the planet
 	
@@ -8,6 +15,10 @@
 	var EARTH_R_NORMAL = 10;  // was 12.5
 	var EARTH_R_MAX = 35;
 	var EARTH_R_MIN = 5;
+	
+	var DIST_NORMAL = 137.5; 
+	var DIST_MAX = 175;
+	var DIST_MIN = 112.5;
 	
 	var center = {x: 200, y: 200 };  		// centre of mass
 	var radius = {sun: SUN_R_NORMAL, earth: EARTH_R_NORMAL};	// initial radii of the sun and earth
@@ -28,13 +39,31 @@
 	var smass_srad_timer_is_set = false;
 	var smass_srad_update_timer;
 	
+	// Convert decimal to string
+	function DecimalToString( decimal ){
+	
+		var tstring;
+		if (decimal >= 1) {
+			tstring = Number(decimal.toPrecision(3));
+		} else if (decimal < 1 & decimal > 0.001) {
+			tstring = Number(decimal.toFixed(3));
+		} else {
+			tstring = Number(decimal.toPrecision(3)).toExponential();
+			tstring = tstring.replace(/e/g," &times; 10^");
+			strarray = tstring.split("^");
+			tstring = strarray[0] + (strarray[1]).sup();
+		}
+		return(String(tstring));
+	}
+
+
 	// Create orbit path for the planet
 	function EarthOrbit(Dist, angle) {
 		var eorbit="M" + (center.x - Dist) + "," + (center.y ) + " R";
 		for( var i=1; i < 72; i++ ){
-			eorbit += center.x + Dist * Math.cos( Math.PI + i * Math.PI/36. );
+			eorbit += center.x + Dist * Math.cos( Math.PI + i * Math.PI/36.0 );
 			eorbit +=",";
-			eorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin( Math.PI + i * Math.PI/36. );
+			eorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180.0 ) * Math.sin( Math.PI + i * Math.PI/36.0 );
 			eorbit +=" ";
 		}
 		eorbit  +="z";
@@ -47,7 +76,7 @@
 		for( var i=1; i < 36; i++ ){
 			sorbit += center.x + Dist * Math.cos(  i * Math.PI/18 );
 			sorbit +=",";
-			sorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin(  i * Math.PI/18 );
+			sorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180.0 ) * Math.sin(  i * Math.PI/18 );
 			sorbit +=" ";
 		}
 		sorbit  +="z";
@@ -61,7 +90,7 @@
 		for( var i=0; i <= 36; i++ ){
 			eorbit += center.x + Dist * Math.cos(Math.PI + i * Math.PI/36 ) * half;
 			eorbit +=",";
-			eorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180. ) * Math.sin( Math.PI + i * Math.PI/36 ) * half;
+			eorbit += center.y -  Dist * Math.sin( angle * Math.PI / 180.0 ) * Math.sin( Math.PI + i * Math.PI/36 ) * half;
 			eorbit +=" ";
 		}
 		return(eorbit);
@@ -84,7 +113,14 @@
 		// flip z order
 		function flip(){
 			//console.log(zOrder);
-			if( zOrder ==1) { planet.toBack(); path2.toBack();  zOrder=2;} else { planet.toFront(); zOrder=1;};
+			if( zOrder ==1) { 
+				planet.toBack(); 
+				path2.toBack();  
+				zOrder=2;
+			} else { 
+				planet.toFront(); 
+				zOrder=1;
+			};
 		}
 
         
@@ -151,11 +187,14 @@
 			var tstring;
 			var strarray;
 			var period = Math.round(365 * Math.sqrt( relDist * relDist *relDist * 330001/(330000*relMassSun + relMassEarth)));
-
+			var yperiod;
 
 			//convert the value to the string and update the field of Earth years
 			if (period >=1 & period <= 999){
 				tstring = (period).toPrecision(3);
+				document.getElementById("period").innerHTML = tstring;
+			} else if (period < 1 & period >= 0.001) {
+				tstring = (period).toFixed(3);
 				document.getElementById("period").innerHTML = tstring;
 			} else {
 				tstring = Number((period).toPrecision(3)).toExponential();
@@ -165,17 +204,23 @@
 				document.getElementById("period").innerHTML = tstring;
 			}
 
+
 			//convert the value to the string and update the field of Earth years
-			if (period >=365 & period <= 364635){
-				tstring = (period / 365.0).toPrecision(3);
+			yperiod = period/365.0;
+			if (yperiod >=1 & yperiod <= 999){
+				tstring = ( yperiod ).toPrecision(3);
+				document.getElementById("years").innerHTML = tstring;
+			} else if ( yperiod < 1 & yperiod >= 0.001){
+				tstring = (yperiod).toFixed(3);
 				document.getElementById("years").innerHTML = tstring;
 			} else {
-				tstring = Number((period/365.0).toPrecision(3)).toExponential();
+				tstring = Number((yperiod).toPrecision(3)).toExponential();
 				tstring = tstring.replace(/e/g," &times; 10^");
 				strarray = tstring.split("^");
 				tstring = strarray[0] + (strarray[1]).sup();
 				document.getElementById("years").innerHTML = tstring;
 			}
+
 
 
 			if (period <= 365){
@@ -188,6 +233,9 @@
 			var force = ( relMassSun * relMassEarth / (relDist * relDist) );
 			if (force >=1 & force <= 999){
 				tstring = force.toPrecision(3);
+				document.getElementById("force").innerHTML= tstring;
+			} else if (force < 1 & force >= 0.001){
+				tstring = force.toFixed(3);
 				document.getElementById("force").innerHTML= tstring;
 			} else {
 				tstring = Number(force.toPrecision(3)).toExponential();
@@ -291,12 +339,13 @@
 
 			// convert this value into the relative value
 			if (tdist < 0){
-				relDist = (10. + tdist) / 10.;
-				Dist = Math.round(137.5 + 25 * tdist / 9.0);
+				relDist = (10.0 + tdist) / 10.0;
+				Dist = Math.round(DIST_NORMAL + (DIST_NORMAL - DIST_MIN) * tdist / 9.0);
 			} else {
-				relDist = 11.0 * tdist + 1;
-				Dist = Math.round(175 + 37.5 * (tdist - 9) / 9.0);
+				relDist = 99.0 * tdist/9.0 + 1;
+				Dist = Math.round(DIST_MAX + (DIST_MAX - DIST_NORMAL) * (tdist - 9) / 9.0);
 			}	
+
 
 			if(relDist < 10){
 				document.getElementById("inputdist").value= String(relDist.toPrecision(2));
@@ -336,11 +385,11 @@
 
 			// From the relDist value get the value for the slider:
 			if (relDist < 1){
-				tdist = 10.0 * relDist - 10;
-				Dist = Math.round(137.5 + 25 * tdist / 9.0);
+				tdist = Math.round(10.0 * relDist - 10);
+				Dist = Math.round(DIST_NORMAL + (DIST_NORMAL - DIST_MIN) * tdist / 9.0);
 			} else {
-				tdist =  (relDist - 1.) / 11.0;
-				Dist = Math.round(175 + 37.5 * (tdist - 9) / 9.0);
+				tdist = Math.round( (relDist - 1.0) / 11.0);
+				Dist = Math.round(DIST_MAX + (DIST_MAX - DIST_NORMAL) * (tdist - 9) / 9.0);
 			}	
 
 			// calculate new distances for the earth and sun
@@ -396,11 +445,11 @@
 			if (newv < 0){
 				relMassSun = Math.pow((10. + newv) / 10. ,0.8);
 				relRadSun = (10. + newv) / 10. ;
-				radius.sun = Math.round(SUN_R_NORMAL + (SUN_R_NORMAL - SUN_R_MIN) * newv / 9.0);
+				radius.sun = SUN_R_NORMAL + (SUN_R_NORMAL - SUN_R_MIN) * newv / 9.0;
 			} else {
 				relMassSun = Math.pow((1. + newv), 0.8) ;
 				relRadSun = (1.0 + newv)  ;
-				radius.sun = Math.round(SUN_R_MAX - (SUN_R_MAX - SUN_R_NORMAL) * ( 9 - newv ) / 9.0);
+				radius.sun = SUN_R_MAX - (SUN_R_MAX - SUN_R_NORMAL) * ( 9 - newv ) / 9.0;
 			}	
 
 			// update text box
@@ -443,11 +492,11 @@
 			if (relMassSun < 1){
 				newv= Math.pow(relMassSun ,1.25) * 10.0 - 10.0 ;
 				relRadSun = (10.0 + newv) / 10.0 ;
-				radius.sun = Math.round(SUN_R_NORMAL + (SUN_R_NORMAL - SUN_R_MIN) * newv / 9.0);
+				radius.sun = SUN_R_NORMAL + (SUN_R_NORMAL - SUN_R_MIN) * newv / 9.0;
 			} else {
 				newv= Math.pow(relMassSun ,1.25) - 1 ;
 				relRadSun = (1.0 + newv)  ;
-				radius.sun = Math.round(SUN_R_MAX - (SUN_R_MAX - SUN_R_NORMAL) * ( 9 - newv ) / 9.0);
+				radius.sun = SUN_R_MAX - (SUN_R_MAX - SUN_R_NORMAL) * ( 9 - newv ) / 9.0;
 			}	
 
 			// update slider
@@ -472,7 +521,7 @@
 			} else if (tmp < 1) {
 				sDist = 1;
 			} else {
-				sDist = Math.round(tmp * 10/18);
+				sDist = Math.round(tmp * 10/18.0);
 			}
 			eDist = Dist - sDist;
 
@@ -559,14 +608,13 @@
 			var newv= parseFloat(pmslider.value);
 			var news= parseFloat(smslider.value);
 			
-			// console.log("slider planet mass:" + newv);
 			if (newv < 0){
-				relMassEarth = 1.0 + newv*0.5 / 9.0;
+				relMassEarth = 1. + newv*0.5 / 9.;
 			} else {
 				relMassEarth = 2999.0 * newv / 9.0 + 1.0 ;
 			}	
 
-			// console.log("slider relMassEarth:" + relMassEarth);
+
 			// update textbox with the valid values
 			if(relMassEarth < 10){
 				document.getElementById("inputpmass").value= String(relMassEarth.toPrecision(2));
@@ -604,7 +652,7 @@
 
 			// get the value of the viewing angle
 			relMassEarth = parseFloat($(this).val());
-			// console.log("text input relMassEarth:" + relMassEarth);
+			//console.log("text input relMassEarth:" + relMassEarth);
 
 			// insure the valid value
 			if ( isNaN(relMassEarth) ) relMassEarth= 1;
@@ -618,12 +666,12 @@
 				newv = (relMassEarth  - 1.0) * 9.0 / 2999.0;
 			}	
 
-			// console.log("text slider value:" + newv);
+			//console.log("text slider value:" + newv);
 			// update slider
 			pmslider.value = newv;
 			$(pmslider).change();
 
-			// console.log("text relMassEarth:" + relMassEarth);
+			//console.log("text relMassEarth:" + relMassEarth);
 			
 			// update textbox with the valid values
 			if(relMassEarth < 10){
@@ -696,10 +744,10 @@
 
 			// From the relDist value get the value for the slider:
 			if (relRadEarth < 1){
-				newv = (18.0 * relRadEarth - 18.0);
+				newv = (18 * relRadEarth - 18.0);
 				radius.earth = Math.round(EARTH_R_NORMAL + (EARTH_R_NORMAL - EARTH_R_MIN) * newv / 9.0);
 			} else {
-				newv = (relRadEarth  - 1.0) * 9.0 / 49.0;
+				newv = (relRadEarth  - 1) * 9 / 49;
 				radius.earth = Math.round(EARTH_R_MAX - (EARTH_R_MAX - EARTH_R_NORMAL)* ( 9 - newv ) / 9.0);
 			}	
 
@@ -771,6 +819,5 @@
 			updateALL();
 		}
 
-		$(reset_button).click();
 
 	});

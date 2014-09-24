@@ -125,7 +125,7 @@
 		ratio = 6.371* relRadEarth / (696 * relRadSun) ;
 		var gr_ratio = Math.min(ratio, 1);
 		dratio = gr_ratio * gr_ratio;    // save value to display depth of the graph
-		// console.log("dratio=" + dratio);
+		//console.log("dratio=" + dratio);
 
 		var gr_up = 450;  // position of the maximum value of the graph
 		var gr_r = 5; // number of pixels for smoothing
@@ -323,7 +323,7 @@
 			igraph = paper.path(TransitGraph(eDist, sDist, vangle)).attr({ stroke: "#ffffff"});
 			ipoint = paper.circle(50, 450, 3).attr( { fill: '#EFBE5A', stroke: '#FFF' });
 
-			dipvalue = paper.text(125, 425, DecimalToSimpleString( dratio )).attr({fill: '#fff'});
+			dipvalue = paper.text(125, 425, DecimalToSimpleString( dratio )).attr({fill: '#fff', "font-size": 12});
 			dipvalue.id = 'IDdipValue';
 			
 		}
@@ -425,16 +425,16 @@
 		var ipoint = paper.circle(50, 450, 3).attr( { fill: '#EFBE5A', stroke: '#FFF' });
 		ipoint.id = 'IDpoint';
 		
-		var diptext = paper.text(125, 410, "Transit Depth").attr({fill: '#09c'});
+		var diptext = paper.text(125, 410, "Transit Depth").attr({fill: '#09c', "font-size": 12});
 		diptext.id = 'IDdipTitle';
 		
-		var dipvalue = paper.text(125, 425, DecimalToSimpleString( dratio )).attr({fill: '#fff'});
+		var dipvalue = paper.text(125, 425, DecimalToSimpleString( dratio )).attr({fill: '#fff', "font-size": 12});
 		dipvalue.id = 'IDdipValue';
 		
 		// axes labels
-		var xlabel = paper.text(340,487,"Time").attr({fill: '#09c'});
+		var xlabel = paper.text(340,487,"Time").attr({fill: '#09c', "font-size": 12});
 		xlabel.id = 'IDxlabel';
-		var ylabel = paper.text(30,450,"Brightness").attr({fill: '#09c'}).transform("r-90");
+		var ylabel = paper.text(30,450,"Brightness").attr({fill: '#09c', "font-size": 12}).transform("r-90");
 		ylabel.id = 'IDxlabel';
 		var one = paper.text(45,445,"1").attr({fill: '#fff'});
 		var zero = paper.text(45,475,"0").attr({fill: '#fff'});
@@ -548,10 +548,10 @@
 
 			// From the relDist value get the value for the slider:
 			if (relDist < 1){
-				tdist = Math.round(10.0 * relDist - 10);
+				tdist = 10.0 * relDist - 10;
 				Dist = Math.round(DIST_NORMAL + (DIST_NORMAL - DIST_MIN) * tdist / 9.0);
 			} else {
-				tdist = Math.round( (relDist - 1.) / 11.0);
+				tdist = (relDist - 1.) / 11.0;
 				Dist = Math.round(DIST_MAX + (DIST_MAX - DIST_NORMAL) * (tdist - 9) / 9.0);
 			}	
 
@@ -983,5 +983,5 @@
 			updateALL();
 		}
 
-		$(reset_button).click();
+
 	});
