@@ -1,0 +1,13 @@
+#canvas_container svg {
+overflow: visible;
+}
+
+.module_log {
+top: 0px;
+position: relative;
+line-height: 1.3
+}
+
+.log_header {
+width: 5em;
+}
