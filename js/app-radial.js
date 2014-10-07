@@ -64,6 +64,10 @@
 	var ystart = 470;
 	var igraph1, igraph2, igraph3, igraph4, igraph5; 
 	
+	var rdn1;
+	var rdn2;
+	var strarray;
+	
 	// Convert decimal to string
 	function DecimalToString( decimal ){
 	
@@ -259,6 +263,7 @@
 		function flip(){
 			//console.log(zOrder);
 			if( zOrder == 2) {planet.toBack(); path2.toBack();  zOrder=1;} else {planet.toFront(); zOrder=2;};
+			//if( zOrder == 1) {planet.toFront(); zOrder=2;};
 		}
 
         
@@ -293,7 +298,7 @@
 			};    
 
 			selement.attr({along:0});
-			var anim = Raphael.animation({along: 1}, duration);
+			var anim = Raphael.animation({along: 1}, duration );
 			selement.animate(anim.repeat(repetitions)); 
 
 			relement.attr({along:0});
@@ -341,8 +346,8 @@
 			spectrum.remove();
 			spgraph.remove();
 
-			minlabel.remove();
-			maxlabel.remove();
+			//minlabel.remove();
+			//maxlabel.remove();
 
 			sun = paper.circle(200, 200, radius.sun).attr( { fill: "r(.35,.35) #FFFFAA-#DEAD49", stroke: '#DEAD49', 'stroke-width': 2, opacity: 1 });
 			planet = paper.circle(200, 337.5, radius.earth).attr({ fill: "r(0.45,0.45) #618bA9-#215b69", "stroke": "#215b69", "stroke-width": "0.5", "stroke-linejoin": "round"});
@@ -352,28 +357,45 @@
 			ipoint = paper.circle(50, 450, 4).attr( { fill: '#EFBE5A', stroke: '#FFF' , 'fill-opacity':0.2});
 			
 			if (amp > 0.0001){
-				igraph1 = paper.path(GetCurve1()).attr({ stroke: "#f11", "stroke-width": "2px"});
-				igraph2 = paper.path(GetCurve2()).attr({ stroke: "#05f", "stroke-width": "2px"});
-				igraph3 = paper.path(GetCurve3()).attr({ stroke: "#f11", "stroke-width": "2px"});
+				igraph1 = paper.path(GetCurve1()).attr({ stroke: "#f03", "stroke-width": "2px"});
+				igraph2 = paper.path(GetCurve2()).attr({ stroke: "#09f", "stroke-width": "2px"});
+				igraph3 = paper.path(GetCurve3()).attr({ stroke: "#f03", "stroke-width": "2px"});
 			} else {
 				igraph1 = paper.path(GetCurve1()).attr({ stroke: "#fff", "stroke-width": "2px"});
 				igraph2 = paper.path(GetCurve2()).attr({ stroke: "#fff", "stroke-width": "2px"});
 				igraph3 = paper.path(GetCurve3()).attr({ stroke: "#fff", "stroke-width": "2px"});
 			}
 			
-		   igraph4 = paper.path(GetCurve4()).attr({ stroke: "#fff", "stroke-dasharray":"--", opacity: 0.75});				 
-		   igraph5 = paper.path(GetCurve5()).attr({ stroke: "#fff", "stroke-dasharray":"--", opacity: 0.75});				 
+		   igraph4 = paper.path(GetCurve4()).attr({ stroke: "#566", "stroke-dasharray":"--", opacity: 0.75});				 
+		   igraph5 = paper.path(GetCurve5()).attr({ stroke: "#566", "stroke-dasharray":"--", opacity: 0.75});				 
 
 			spectrum = paper.circle(200,575,100,100).attr({fill: 'url(http://scv.bu.edu/katia/worlds/radial/img/spectrum.png)', 'stroke-width': 0})
 			spgraph = paper.path(SpectrumPath(samp)).attr({ opacity: 0});
 
+		
 			if (amp < 48) {
-				minlabel = paper.text(190,480+amp,amp_text_neg).attr({fill: '#05f', "font-size": 12});
-				maxlabel = paper.text(330,460-amp,amp_text_pos).attr({fill: '#f11', "font-size": 12});
+				$("#radialnumber1").css({ top: 475+amp, left: 175 });
+				$("#radialnumber2").css({ top: 460-amp, left: 335 });
 			} else {
-				minlabel = paper.text(190,455+amp,amp_text_neg).attr({fill: '#05f', "font-size": 12});
-				maxlabel = paper.text(330,460-amp,amp_text_pos).attr({fill: '#f11', "font-size": 12});
+				$("#radialnumber1").css({ top: 445+amp, left: 175 });
+				$("#radialnumber2").css({ top: 460-amp, left: 335 });
 			}
+
+			if (amp_value >=1 & amp_value <=999){
+				amp_text_pos = amp_value.toPrecision(3);
+				amp_text_neg = "-" + amp_text_pos;
+			} else if ( amp_value < 1 & amp_value >=0.001){
+				amp_text_pos = amp_value.toFixed(3);
+				amp_text_neg = "-" + amp_text_pos;
+			} else {
+				amp_text_pos = Number((amp_value).toPrecision(3)).toExponential();
+				amp_text_pos = amp_text_pos.replace(/e/g," &times; 10^");
+				strarray = amp_text_pos.split("^");
+				amp_text_pos = strarray[0] + (strarray[1]).sup();
+				amp_text_neg = "-" + amp_text_pos;
+			}
+			document.getElementById("rdn1").innerHTML = amp_text_neg;
+			document.getElementById("rdn2").innerHTML = amp_text_pos;
 			
 		}
 
@@ -381,7 +403,6 @@
 		function updatePeriod(){
 		
 			var tstring;
-			var strarray;
 			var period = Math.round(365 * Math.sqrt( relDist * relDist *relDist * 330001/(330000*relMassSun + relMassEarth)));
 			var yperiod;
 			
@@ -482,6 +503,7 @@
 		
 		// Add an eye
 		var eye = paper.image ('http://scv.bu.edu/katia/worlds/radial/img/eye.svg',-65,185,30,30);
+		eye.id = "IDeye";
 		
 
 		var xaxis = paper.path("M50,470l300,0,l-3,-2,l0,4,l3,-2").attr({ stroke: "#5b6469", opacity: 0.5});
@@ -491,21 +513,21 @@
 		amp = AMP_MIN + 0.333 * (AMP_MAX - AMP_MIN) * (relMassEarth - EARTH_MASS_MIN) / (EARTH_MASS_MAX - EARTH_MASS_MIN) +
 							0.333 * (AMP_MAX - AMP_MIN) *(1.0/relMassSun - 1.0/SUN_MASS_MAX ) / (1.0/SUN_MASS_MIN - 1.0/SUN_MASS_MAX)  +
 							0.333 * (AMP_MAX - AMP_MIN) *(1.0/Math.pow(1,1/3) - 1.0/Math.pow(2512,1/3) ) / (1.0/Math.pow(0.0137,1/3) - 1.0/Math.pow(2512,1/3));
-			amp = amp * Math.sin(vangle * Math.PI/180.);
+		amp = amp * Math.sin(vangle * Math.PI/180.);
 		samp = SAMP_MAX * amp / AMP_MAX;
 		var igraph = paper.path(TransitGraph(eDist, sDist, vangle)).attr({ opacity: 0});
 		
 		if (amp > 0.0001){
-		   igraph1 = paper.path(GetCurve1()).attr({ stroke: "#f11", "stroke-width": "2px"});
-		   igraph2 = paper.path(GetCurve2()).attr({ stroke: "#05f", "stroke-width": "2px"});
-		   igraph3 = paper.path(GetCurve3()).attr({ stroke: "#f11", "stroke-width": "2px"});
+		   igraph1 = paper.path(GetCurve1()).attr({ stroke: "#f03", "stroke-width": "2px"});
+		   igraph2 = paper.path(GetCurve2()).attr({ stroke: "#09f", "stroke-width": "2px"});
+		   igraph3 = paper.path(GetCurve3()).attr({ stroke: "#f03", "stroke-width": "2px"});
 		} else {
 		   igraph1 = paper.path(GetCurve1()).attr({ stroke: "#fff", "stroke-width": "2px"});
 		   igraph2 = paper.path(GetCurve2()).attr({ stroke: "#fff", "stroke-width": "2px"});
 		   igraph3 = paper.path(GetCurve3()).attr({ stroke: "#fff", "stroke-width": "2px"});
 		}
-		   igraph4 = paper.path(GetCurve4()).attr({ stroke: "#fff", "stroke-dasharray":"--", opacity: 0.75});				 
-		   igraph5 = paper.path(GetCurve5()).attr({ stroke: "#fff", "stroke-dasharray":"--", opacity: 0.75});				 
+		   igraph4 = paper.path(GetCurve4()).attr({ stroke: "#566", "stroke-dasharray":"--", opacity: 0.75});				 
+		   igraph5 = paper.path(GetCurve5()).attr({ stroke: "#566", "stroke-dasharray":"--", opacity: 0.75});				 
 
 		var ipoint = paper.circle(50, 450, 4).attr( { fill: '#EFBE5A', stroke: '#FFF' , 'fill-opacity':0.2});
 		ipoint.id = 'IDpoint';
@@ -518,7 +540,7 @@
 		ylabel.id = 'IDxlabel';
 		var zero = paper.text(45,475,"0").attr({fill: '#fff'});
 		
-		// Add spectrum
+		// Add spectrum lines
 		var sline1 = paper.path("M153.5,550l0,12").attr({ stroke: "#46a"});
 		var sline2 = paper.path("M169.5,550l0,12").attr({ stroke: "#46a"});
 		var sline3 = paper.path("M205.5,550l0,12").attr({ stroke: "#46a"});
@@ -532,10 +554,27 @@
 
 
 		var spectrum = paper.circle(200,575,100,100).attr({fill: 'url(http://scv.bu.edu/katia/worlds/radial/img/spectrum.png)', 'stroke-width': 0})
+		spectrum.id = "IDspectrum";
 		var spgraph = paper.path(SpectrumPath(samp)).attr({ opacity: 0});
 
-		var minlabel = paper.text(190,510,amp_text_neg).attr({fill: '#05f', "font-size": 12});
-		var maxlabel = paper.text(330,435,amp_text_pos).attr({fill: '#f11', "font-size": 12});
+
+		$("#radialnumber1").css({ top: 500, left: 175 });
+		$("#radialnumber2").css({ top: 430, left: 330 });
+		
+		//convert the value to the string and update the field
+		if (amp_value >=0.001){
+			amp_text_pos = String(amp_value);
+			amp_text_neg = "-" + amp_text_pos;
+		} else {
+			amp_text_pos = Number((amp_value).toPrecision(3)).toExponential();
+			amp_text_pos = amp_text_pos.replace(/e/g," &times; 10^");
+			strarray = amp_text_pos.split("^");
+			amp_text_pos = strarray[0] + (strarray[1]).sup();
+			amp_text_neg = "-" + amp_text_pos;
+		}
+		document.getElementById("rdn1").innerHTML = amp_text_neg;
+		document.getElementById("rdn2").innerHTML = amp_text_pos;
+		
 
 		
 		// add animation 
@@ -756,10 +795,10 @@
                         }
 
                         // update slider
-                        smslider.value = Math.round(newv);
+                        smslider.value = newv;
                         $(smslider).change();
 
-                        srslider.value = Math.round(newv);
+                        srslider.value = newv;
                         $(srslider).change();
 
                         // update textbox with the valid value
@@ -1010,7 +1049,7 @@
 			}	
 
 			// update slider
-			prslider.value = Math.round(newv);
+			prslider.value = newv;
 			$(prslider).change();
 
 			// update textbox with the valid value

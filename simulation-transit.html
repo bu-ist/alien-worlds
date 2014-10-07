@@ -10,7 +10,7 @@
 	<link rel="stylesheet" media="all" href="css/styles.css" />
 	<link rel="stylesheet" media="all" href="css/transit.css" />
 	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/raphael-min.js"></script>
+	<script src="js/raphael.js"></script>
 
 	<script src="js/app-transit.js"></script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -53,7 +53,7 @@
 					<span class="slider-helper min-label" aria-hidden="true">0</span>
 					<span class="slider-helper max-label" aria-hidden="true">90</span>
 					<span style="display:none;" id="inputangle_aria_label">Enter any number between 0 and 90</span>
-					<span class="input_printout hidden"><output for="viewangle" id="txtangle">90</output>&#176;</span>
+					<span class="input_printout hidden"><output for="viewangle" id="txtangle">0</output>&#176;</span>
 				</div>
 			</div>
 			<div class="input_wrapper">
@@ -132,10 +132,9 @@
 		<span class="log_header1">Planet to Star  radii ratio:</span> <span id="ratio" class="log_number"> 1 </span>
 				</div>
 				<div id="canvas_container">
-					<div id="radialnumber1">0.000</div>
+				   <div id="radialnumber1"><span id="rdn1">21</span></div>
 				</div>
 			</div>
-			<div class="disclaimer">Disclaimer: Not all parameter combinations may represent a possible physical system.</div>
 		</div>
 
 		<!-- <div class="module_wrapper half">
