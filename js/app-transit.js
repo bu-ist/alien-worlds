@@ -42,9 +42,6 @@
 	var ratio = 6.371 / 696  ; //ratio of palnet to star
 	var dratio = 0.0  ;  // dip depth value
 	var min_ratio = 6.371* 0.5 / (696 * 10) ;
-
-	var dipvalue;
-	var strarray;
 	
 	// Convert decimal to string
 	function DecimalToString( decimal ){
@@ -317,6 +314,7 @@
 			sun.remove(); 
 			igraph.remove();
 			ipoint.remove();
+			dipvalue.remove();
 
 			sun = paper.circle(200, 200, radius.sun).attr( { fill: "r(.35,.35) #FFFFAA-#DEAD49", stroke: '#DEAD49', 'stroke-width': 2, opacity: 1 });
 			planet = paper.circle(337.5, 200, radius.earth).attr({ fill: "r(0.45,0.45) #618bA9-#215b69", "stroke": "#215b69", "stroke-width": "0.5", "stroke-linejoin": "round"});
@@ -325,21 +323,8 @@
 			igraph = paper.path(TransitGraph(eDist, sDist, vangle)).attr({ stroke: "#ffffff"});
 			ipoint = paper.circle(50, 450, 3).attr( { fill: '#EFBE5A', stroke: '#FFF' });
 
-	
-			if (dratio >=1 & dratio <= 999){
-				dipvalue = (dratio).toPrecision(3);
-			} else if (dratio == 0) {
-				dipvalue = "0";
-			} else if (dratio < 1 & dratio >= 0.001) {
-				dipvalue = (dratio).toFixed(3);
-			} else {
-				dipvalue = Number((dratio).toPrecision(3)).toExponential();
-				dipvalue = dipvalue.replace(/e/g," &times; 10^");
-				strarray = dipvalue.split("^");
-				dipvalue = strarray[0] + (strarray[1]).sup();
-			}
-			document.getElementById("rdn1").innerHTML = dipvalue;
-
+			dipvalue = paper.text(125, 425, DecimalToSimpleString( dratio )).attr({fill: '#fff', "font-size": 12});
+			dipvalue.id = 'IDdipValue';
 			
 		}
 
@@ -347,6 +332,7 @@
 		function updatePeriod(){
 		
 			var tstring;
+			var strarray;
 			var period = Math.round(365 * Math.sqrt( relDist * relDist *relDist * 330001/(330000*relMassSun + relMassEarth)));
 			var yperiod;
 			
@@ -442,18 +428,8 @@
 		var diptext = paper.text(125, 410, "Transit Depth").attr({fill: '#09c', "font-size": 12});
 		diptext.id = 'IDdipTitle';
 		
-		$("#radialnumber1").css({ top: 430, left: 90 });
-		//convert the value to the string and update the field
-		if (dratio >=0.001){
-			dipvalue = String(dratio);
-		} else {
-			dipvalue = Number((dratio).toPrecision(3)).toExponential();
-			dipvalue = dipvalue.replace(/e/g," &times; 10^");
-			strarray = dipvalue.split("^");
-			dipvalue = strarray[0] + (strarray[1]).sup();
-		}
-		document.getElementById("rdn1").innerHTML = dipvalue;
-
+		var dipvalue = paper.text(125, 425, DecimalToSimpleString( dratio )).attr({fill: '#fff', "font-size": 12});
+		dipvalue.id = 'IDdipValue';
 		
 		// axes labels
 		var xlabel = paper.text(340,487,"Time").attr({fill: '#09c', "font-size": 12});
@@ -469,7 +445,7 @@
 		//calculate the radii ratio
 		var tstring = Number(ratio.toPrecision(3)).toExponential();
 		tstring = tstring.replace(/e/g," &times; 10^");
-		strarray = tstring.split("^");
+		var strarray = tstring.split("^");
 		tstring = strarray[0] + (strarray[1]).sup();
 		document.getElementById("ratio").innerHTML= tstring;
 
@@ -687,10 +663,10 @@
 			}	
 
 			// update slider
-			smslider.value = newv;
+			smslider.value = Math.round(newv);
 			$(smslider).change();
 
-			srslider.value = newv;
+			srslider.value = Math.round(newv);
 			$(srslider).change();
 
 			// update textbox with the valid value
@@ -941,7 +917,7 @@
 			}	
 
 			// update slider
-			prslider.value = newv;
+			prslider.value = Math.round(newv);
 			$(prslider).change();
 
 			// update textbox with the valid value
