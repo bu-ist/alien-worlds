@@ -9,8 +9,14 @@
 	<link rel="stylesheet" media="all" href="css/rangeslider.css" />
 	<link rel="stylesheet" media="all" href="css/styles.css" />
 	<link rel="stylesheet" media="all" href="css/kepler.css" />
+	<link type='text/css' href='css/basic.css' rel='stylesheet' media='screen' />
+
+<!-- IE6 "fix" for the close png image -->
+<!--[if lt IE 7]>
+<link type='text/css' href='css/basic_ie.css' rel='stylesheet' media='screen' />
+<![endif]-->
 	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/raphael-min.js"></script>
+	<script src="js/raphael.js"></script>
 
 	<script src="js/app-kepler.js"></script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,6 +35,17 @@
 
 </head>
 <body>
+
+				<!-- modal content -->
+		<div id="basic-modal-content">
+			<h3>Known Bugs and Issues</h3>
+			<p><b>Inactivity Desynchronisation</b> <br>
+				Often if left running idle for an indescriminate length of time the visualization may fall out of sync with the simulation and/or behave starngely. <br>
+				The visualization will correct itself once the user changes any silder value on the side panel.
+			</p>
+		
+			<p><a href='#'>...still need help?</a></p>
+		</div>
 
 	<!-- menu -->
 
@@ -116,8 +133,11 @@
 				</div>
 			</div>
 			<button type="button" id="reset">Reset to the original values <img src="img/reset.svg"></button>
+			<a href='#' id="basic-modal" class="basic help-btn">Need Help?</a>
 			<img src="img/logo_bu.png" alt="courtesy of Boston University." height="50" width="112" class="logo_bu">
 		</div>
+
+
 	</div>
 
 	<!-- main article -->
@@ -131,7 +151,7 @@
 		<span class="log_header">Force</span> <span id="force" class="log_number"> 1 </span> &times; the force between the Earth and the Sun
 				</div>
 				<div id="canvas_container"></div>
-			<div class="disclaimer">Disclaimer: Not all parameter combinations may represent a possible physical system.</div>
+			<div class="disclaimer">Disclaimer: Visualizations are exaggerated and not all parameter combinations may represent a possible system.</div>
 			</div>
 		</div>
 
@@ -153,6 +173,8 @@
 
     <script src="js/rangeslider.min.js"></script>
     <script src="js/svgeezy.min.js"></script>
+<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='js/basic.js'></script>
     <script>
 		svgeezy.init(false, 'png');
     </script>

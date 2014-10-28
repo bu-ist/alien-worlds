@@ -28,9 +28,19 @@ width: 5em;
 }
 
 #radialnumber1 {
-	color: rgb(0, 85, 255);
+	color: rgb(0, 153, 255);
 }
 
 #radialnumber2 {
 	color: rgb(255, 17, 17);
+}
+
+.radialeye {
+	position: absolute;
+	font-size: 12px;
+	z-index: 100;
+	top: 189px;
+	left: -64px;
+	width: 29px;
+	height: 22px;
 }
