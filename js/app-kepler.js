@@ -385,10 +385,10 @@
 
 			// From the relDist value get the value for the slider:
 			if (relDist < 1){
-				tdist = Math.round(10.0 * relDist - 10);
+				tdist = 10.0 * relDist - 10;
 				Dist = Math.round(DIST_NORMAL + (DIST_NORMAL - DIST_MIN) * tdist / 9.0);
 			} else {
-				tdist = Math.round( (relDist - 1.0) / 11.0);
+				tdist =  (relDist - 1.0) / 11.0;
 				Dist = Math.round(DIST_MAX + (DIST_MAX - DIST_NORMAL) * (tdist - 9) / 9.0);
 			}	
 
