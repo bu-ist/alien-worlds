@@ -9,8 +9,14 @@
 	<link rel="stylesheet" media="all" href="css/rangeslider.css" />
 	<link rel="stylesheet" media="all" href="css/styles.css" />
 	<link rel="stylesheet" media="all" href="css/radial.css" />
+	<link type='text/css' href='css/basic.css' rel='stylesheet' media='screen' />
+
+<!-- IE6 "fix" for the close png image -->
+<!--[if lt IE 7]>
+<link type='text/css' href='css/basic_ie.css' rel='stylesheet' media='screen' />
+<![endif]-->
 	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/raphael-min.js"></script>
+	<script src="js/raphael.js"></script>
 
 	<script src="js/app-radial.js"></script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,6 +35,20 @@
 
 </head>
 <body>
+
+				<!-- modal content -->
+		<div id="basic-modal-content">
+			<h3>Known Bugs and Issues</h3>
+			<p><b>Inactivity Desynchronisation</b> <br>
+				Often if left running idle for an indescriminate length of time the visualization may fall out of sync with the simulation and/or behave starngely. <br>
+				The visualization will correct itself once the user changes any silder value on the side panel.
+			</p>
+			<p><b>Spectrum movement on IE9</b> <br>
+				On internet explorer 9 (and earlier) browsers, the spectrum is not accurately represented. If possible please consider upgrading to a contemporary version of Internet explorer or use and alternate browser such as <a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a> or  <a href="https://www.google.com/chrome/">Google Chrome</a>.
+			</p>
+		
+			<p><a href='http://www.bu.edu/tech/contact/'>...still need help?</a></p>
+		</div>
 
 	<!-- menu -->
 
@@ -116,6 +136,7 @@
 				</div>
 			</div>
 			<button type="button" id="reset">Reset to the original values <img src="img/reset.svg"></button>
+			<a href='#' id="basic-modal" class="basic help-btn">Need Help?</a>
 			<img src="img/logo_bu.png" alt="courtesy of Boston University." height="50" width="112" class="logo_bu">
 		</div>
 	</div>
@@ -130,10 +151,11 @@
 					<span class="log_header">PERIOD</span> <span id="period" class="log_number"> 365 </span> Earth days or <span id="years" class="log_number">1</span> Earth years
 				</div>
 				<div id="canvas_container">
-					<!-- <div id="radialnumber1">0.0005</div>
-					<div id="radialnumber2">0.0009</div> -->
+					<div id="radialnumber1"><span id="rdn1">21</span></div>
+					<div id="radialnumber2"><span id="rdn2">21</span></div>
+					<img src="img/eye.svg" class="radialeye">
 				</div>
-			<div class="disclaimer">Disclaimer: Not all parameter combinations may represent a possible physical system.</div>
+			<div class="disclaimer">Disclaimer: Visualizations are exaggerated and not all parameter combinations may represent a possible system</div>
 			</div>
 		</div>
 
@@ -155,6 +177,8 @@
 
     <script src="js/rangeslider.min.js"></script>
     <script src="js/svgeezy.min.js"></script>
+<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='js/basic.js'></script>
     <script>
 		svgeezy.init(false, 'png');
     </script>
@@ -226,7 +250,20 @@
 
 	    });
 	</script>
+<script type="text/javascript">
 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-124985-1']);
+  _gaq.push(['_setDomainName', 'bu.edu']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </body>
 </html>
 <!-- Source code and visualization may be used for non-commercial and non-profit purpose courtesy of Boston University -->
