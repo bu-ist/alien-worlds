@@ -437,7 +437,7 @@
 			
 	   igraph4 = paper.path(GetCurve4()).attr({ stroke: "#566", "stroke-dasharray":"--", opacity: 0.75});                    igraph5 = paper.path(GetCurve5()).attr({ stroke: "#566", "stroke-dasharray":"--", opacity: 0.75});              
 
-	   spectrum = paper.circle(200,575,100,100).attr({fill: 'url(http://scv.bu.edu/katia/worlds/radial/img/spectrum.png)', 'stroke-width': 0})
+	   spectrum = paper.circle(200,575,100,100).attr({fill: 'url(http://bu-ist.github.io/alien-worlds/img/spectrum.png)', 'stroke-width': 0})
 	   spgraph = paper.path(SpectrumPath(samp)).attr({ opacity: 0});
 
 		
@@ -579,7 +579,7 @@
 	path2.toBack();
 		
 	// Add an eye
-	//var eye = paper.image ('http://scv.bu.edu/katia/worlds/radial/img/eye.svg',-65,185,30,30);
+	//var eye = paper.image ('http://bu-ist.github.io/alien-worlds/img/eye.svg',-65,185,30,30);
 	//eye.id = "IDeye";
 		
 
@@ -632,7 +632,7 @@
 	var Ftxt = paper.text(154,545,"F").attr({fill: '#abf'});
 
 
-	var spectrum = paper.circle(200,575,100,100).attr({fill: 'url(http://scv.bu.edu/katia/worlds/radial/img/spectrum.png)', 'stroke-width': 0})
+	var spectrum = paper.circle(200,575,100,100).attr({fill: 'url(http://bu-ist.github.io/alien-worlds/img/spectrum.png)', 'stroke-width': 0})
 	spectrum.id = "IDspectrum";
 	var spgraph = paper.path(SpectrumPath(samp)).attr({ opacity: 0});
 
